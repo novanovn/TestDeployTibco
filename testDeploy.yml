@@ -1,0 +1,9 @@
+---
+- hosts: TIBCOADMIN
+  become: true
+
+  tasks:
+  - name: Go to AppManage Folder & Deploy with AppManage
+    command: ./AppManage -deploy -ear /opt/export/TESTDEPLOY.ear -deployConfig /opt/export/TESTDEPLOY.xml -app testdeploy/TESTDEPLOY -domain  LIPSTIBPRODINT  -user rizal -pw latitude -serialize
+    args:
+      chdir: /opt/tibco/tra/5.8/bin

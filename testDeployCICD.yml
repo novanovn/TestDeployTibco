@@ -1,0 +1,21 @@
+---
+- hosts: TIBCOADMIN
+  become: true
+
+  tasks:
+  - name: Stop Old Deploy
+    command: ./AppManage -stop -app testdeploy/TESTDEPLOY -user rizal -pw latitude -domain LIPSTIBPRODINT
+    args:
+      chdir: /opt/tibco/tra/5.8/bin
+
+ 
+  - name: Delete Old Deploy
+    command: ./AppManage -delete -app testdeploy/TESTDEPLOY -user rizal -pw latitude -domain LIPSTIBPRODINT -force
+    args:
+      chdir: /opt/tibco/tra/5.8/bin
+
+  
+  - name: Go to AppManage Folder & Deploy with AppManage
+    command: ./AppManage -deploy -ear /opt/export/TESTDEPLOY.ear -deployConfig /opt/export/TESTDEPLOY.xml -app testdeploy/TESTDEPLOY -domain  LIPSTIBPRODINT  -user rizal -pw latitude -serialize
+    args:
+      chdir: /opt/tibco/tra/5.8/bin
