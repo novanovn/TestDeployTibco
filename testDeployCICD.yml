@@ -5,12 +5,15 @@
   tasks:
   - name: Stop Old Deploy
     command: ./AppManage -stop -app testdeploy/TESTDEPLOY -user rizal -pw latitude -domain LIPSTIBPRODINT
+    ignore_errors: yes
     args:
       chdir: /opt/tibco/tra/5.8/bin
+
 
  
   - name: Delete Old Deploy
     command: ./AppManage -delete -app testdeploy/TESTDEPLOY -user rizal -pw latitude -domain LIPSTIBPRODINT -force
+    ignore_errors: yes
     args:
       chdir: /opt/tibco/tra/5.8/bin
 
